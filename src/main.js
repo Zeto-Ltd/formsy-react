@@ -42,6 +42,7 @@ Formsy.Form = React.createClass({
       onInvalid: function () {},
       onChange: function () {},
       validationErrors: null,
+      serverValidationErrors: null,
       preventExternalInvalidation: false
     };
   },
@@ -83,6 +84,12 @@ Formsy.Form = React.createClass({
 
     if (this.props.validationErrors && typeof this.props.validationErrors === 'object' && Object.keys(this.props.validationErrors).length > 0) {
       this.setInputValidationErrors(this.props.validationErrors);
+    }
+
+    if (this.props.serverValidationErrors &&
+        typeof this.props.serverValidationErrors === 'object' &&
+        Object.keys(this.props.serverValidationErrors).length > 0) {
+      this.updateInputsWithError(this.props.serverValidationErrors);
     }
 
     var newInputNames = this.inputs.map(component => component.props.name);
