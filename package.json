@@ -1,6 +1,9 @@
 {
   "name": "formsy-react",
   "version": "0.18.0-zeto",
+  "publishConfig": {
+    "registry": "https://npm.fury.io/zeto"
+  },
   "description": "A form input builder and validator for React JS, forked from original by Christian Alfoni",
   "repository": {
     "type": "git",
