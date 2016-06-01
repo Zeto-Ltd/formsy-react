@@ -134,3 +134,12 @@ The form element component is what gives the form validation functionality to wh
 ## License
 
 [MIT](/LICENSE)
+
+## Publishing
+
+See your [personal Gemfury page](https://manage.fury.io/dashboard/zeto/push?kind=js)
+for the push URL and run the following to publish:
+
+    npm install
+    npm pack
+    curl -F package=@formsy-react-<version>.tgz https://<token>@push.fury.io/zeto/
