@@ -91,12 +91,26 @@ Formsy.Form = React.createClass({
         Object.keys(this.props.serverValidationErrors).length > 0) {
       this.updateInputsWithError(this.props.serverValidationErrors);
     }
+    else if (this.hasServerValidationErrors()) {
+      // reset any server validation errors if none are supplied
+      // FIXME: isValid state should be determined based on both validation
+      // and server validation errors, not fixed boolean
+      this.inputs.forEach(component => {
+        component.setState({_isValid: true, _externalError: null});
+      });
+    }
 
     var newInputNames = this.inputs.map(component => component.props.name);
     if (utils.arraysDiffer(this.prevInputNames, newInputNames)) {
       this.validateForm();
     }
 
+  },
+
+  hasServerValidationErrors: function() {
+    return this.inputs.reduce((previous, entry) => {
+      return previous + (entry.state._externalError ? 1 : 0);
+    }, 0);
   },
 
   // Allow resetting to specified data
